@@ -1,7 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -34,15 +35,6 @@
     --ring: 275 18% 27%;  /* #73628A */
 
     --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 92%;  /* #EAEAEA */
-    --sidebar-foreground: 275 18% 27%;  /* #73628A */
-    --sidebar-primary: 275 18% 27%;  /* #73628A */
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 263 42% 85%;  /* #CBC5EA */
-    --sidebar-accent-foreground: 275 18% 27%;  /* #73628A */
-    --sidebar-border: 263 42% 85%;  /* #CBC5EA */
-    --sidebar-ring: 275 18% 27%;  /* #73628A */
   }
 }
 
@@ -53,10 +45,14 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
   }
 }
 
-/* Custom styling for PortFlex */
 .portflex-gradient {
   background: linear-gradient(to right, #CBC5EA, #73628A);
 }
