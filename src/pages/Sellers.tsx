@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { FileUpload, Package, DollarSign } from "lucide-react";
+import { Upload, Package, DollarSign } from "lucide-react";
 
 const Sellers = () => {
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const Sellers = () => {
               <div className="space-y-4">
                 <Label htmlFor="images">Product Images</Label>
                 <div className="border-2 border-dashed border-primary/20 rounded-lg p-8 text-center">
-                  <FileUpload className="mx-auto h-12 w-12 text-primary/40 mb-4" />
+                  <Upload className="mx-auto h-12 w-12 text-primary/40 mb-4" />
                   <p className="text-sm text-muted-foreground">
                     Drag and drop your images here, or click to select files
                   </p>

@@ -2,37 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 92%;  /* #EAEAEA */
-    --foreground: 275 18% 27%;  /* #73628A */
+    --background: 0 0% 98%;  /* #FAFAFA */
+    --foreground: 324 9% 15%;  /* #2C252D */
 
     --card: 0 0% 100%;
-    --card-foreground: 275 18% 27%;  /* #73628A */
+    --card-foreground: 324 9% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 275 18% 27%;  /* #73628A */
+    --popover-foreground: 324 9% 15%;
 
-    --primary: 275 18% 27%;  /* #73628A */
+    --primary: 324 9% 15%;  /* #2C252D */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 263 42% 85%;  /* #CBC5EA */
-    --secondary-foreground: 275 18% 27%;  /* #73628A */
+    --secondary: 320 13% 90%;  /* #EBE5E8 */
+    --secondary-foreground: 324 9% 15%;
 
-    --muted: 0 0% 92%;  /* #EAEAEA */
-    --muted-foreground: 275 10% 40%;  /* Lighter version of #73628A */
+    --muted: 0 0% 98%;
+    --muted-foreground: 324 5% 35%;
 
-    --accent: 263 42% 85%;  /* #CBC5EA */
-    --accent-foreground: 275 18% 27%;  /* #73628A */
+    --accent: 320 13% 90%;
+    --accent-foreground: 324 9% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 263 42% 85%;  /* #CBC5EA */
-    --input: 263 42% 85%;  /* #CBC5EA */
-    --ring: 275 18% 27%;  /* #73628A */
+    --border: 320 13% 90%;
+    --input: 320 13% 90%;
+    --ring: 324 9% 15%;
 
     --radius: 0.75rem;
   }
@@ -45,7 +45,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -54,10 +54,10 @@
 }
 
 .portflex-gradient {
-  background: linear-gradient(to right, #CBC5EA, #73628A);
+  background: linear-gradient(to right, #EBE5E8, #2C252D);
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(115, 98, 138, 0.1), 0 4px 6px -2px rgba(115, 98, 138, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(44, 37, 45, 0.1), 0 4px 6px -2px rgba(44, 37, 45, 0.05);
 }

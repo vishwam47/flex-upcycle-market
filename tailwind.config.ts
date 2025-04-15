@@ -52,21 +52,10 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))'
-        },
-        // Custom color palette
         portflex: {
-          light: '#EAEAEA',
-          lavender: '#CBC5EA',
-          purple: '#73628A'
+          light: '#FAFAFA',
+          accent: '#EBE5E8',
+          dark: '#2C252D'
         }
       },
       borderRadius: {
@@ -97,7 +86,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out'
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
         serif: ['Playfair Display', 'serif']
       }
     }
