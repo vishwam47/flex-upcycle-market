@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Search, ShoppingCart, Menu, X, Heart, User } from "lucide-react";
@@ -40,8 +39,11 @@ const Navbar = () => {
       <div className="container mx-auto p-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-portflex-purple">
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="w-10 h-10 rounded-full bg-portflex-purple flex items-center justify-center">
+              <span className="text-2xl font-serif text-white">P</span>
+            </div>
+            <h1 className="text-2xl font-serif">
               <span className="text-portflex-purple">Port</span>
               <span className="text-portflex-lavender">Flex</span>
             </h1>
