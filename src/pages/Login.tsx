@@ -1,5 +1,6 @@
+
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,8 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/ui/icons";
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from "@/components/ui/use-toast"; // Changed from react-toastify to local toast
 
 const Login = () => {
   const [email, setEmail] = useState('');
