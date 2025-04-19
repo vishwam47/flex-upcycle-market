@@ -12,6 +12,10 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Sellers from "./pages/Sellers";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Account from "./pages/Account";
+import Favorites from "./pages/Favorites";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +34,10 @@ const App = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/about" element={<About />} />
             <Route path="/sellers" element={<Sellers />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

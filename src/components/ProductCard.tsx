@@ -11,7 +11,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <Card className="product-card overflow-hidden transition-all duration-300 h-full flex flex-col">
+    <Card className="product-card overflow-hidden transition-all duration-300 h-full flex flex-col border-secondary/50">
       <div className="relative">
         <Link to={`/product/${product.id}`}>
           <img
@@ -23,32 +23,32 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="absolute top-2 right-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white"
+          className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded-full hover:bg-background text-destructive hover:text-destructive"
         >
-          <Heart className="h-5 w-5 text-portflex-purple" />
+          <Heart className="h-5 w-5" />
         </Button>
       </div>
       <CardContent className="pt-4 flex-grow">
-        <div className="text-xs text-portflex-lavender font-medium mb-1">
+        <div className="text-xs text-accent font-medium mb-1">
           {product.category}
         </div>
         <Link to={`/product/${product.id}`} className="block">
-          <h3 className="text-lg font-semibold text-portflex-purple mb-1 hover:underline">
+          <h3 className="text-lg font-semibold text-primary mb-1 hover:underline">
             {product.name}
           </h3>
         </Link>
         <div className="flex justify-between items-center mt-2">
-          <p className="text-lg font-bold text-portflex-purple">
+          <p className="text-lg font-bold text-primary">
             ${product.price.toFixed(2)}
           </p>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-muted-foreground">
             {product.seller}
           </div>
         </div>
       </CardContent>
-      <CardFooter className="border-t border-portflex-light pt-3">
+      <CardFooter className="border-t border-secondary/50 pt-3">
         <Button 
-          className="w-full bg-portflex-lavender hover:bg-portflex-purple text-portflex-purple hover:text-white transition-colors"
+          className="w-full bg-primary hover:bg-accent text-primary-foreground transition-colors"
         >
           Add to Cart
         </Button>

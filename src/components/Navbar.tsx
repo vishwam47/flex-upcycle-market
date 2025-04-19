@@ -1,6 +1,7 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, ShoppingCart, Menu, X, Heart, User } from "lucide-react";
+import { Search, ShoppingCart, Menu, X, Heart, User, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -32,20 +33,21 @@ const Navbar = () => {
     { name: "Decor", path: "/category/decor" },
     { name: "Jewelry", path: "/category/jewelry" },
     { name: "Art", path: "/category/art" },
+    { name: "Sell", path: "/sellers" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-background shadow-sm">
       <div className="container mx-auto p-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-full bg-portflex-purple flex items-center justify-center">
-              <span className="text-2xl font-serif text-white">P</span>
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+              <span className="text-2xl font-serif text-primary-foreground">P</span>
             </div>
             <h1 className="text-2xl font-serif">
-              <span className="text-portflex-purple">Port</span>
-              <span className="text-portflex-lavender">Flex</span>
+              <span className="text-primary">Port</span>
+              <span className="text-accent">Flex</span>
             </h1>
           </Link>
 
@@ -59,11 +61,11 @@ const Navbar = () => {
                 <Input
                   type="search"
                   placeholder="Search for upcycled products..."
-                  className="w-full pl-10 pr-4 py-2 rounded-full border-portflex-lavender focus:border-portflex-purple focus:ring-portflex-purple"
+                  className="w-full pl-10 pr-4 py-2 rounded-full border-muted focus:border-primary focus:ring-primary"
                   value={searchQuery}
                   onChange={handleSearchChange}
                 />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-portflex-purple h-5 w-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-5 w-5" />
               </div>
             </form>
           )}
@@ -72,17 +74,17 @@ const Navbar = () => {
           {!isMobile && (
             <nav className="hidden md:flex items-center space-x-1">
               <Link to="/favorites">
-                <Button variant="ghost" size="icon" className="text-portflex-purple hover:text-portflex-lavender hover:bg-portflex-light">
+                <Button variant="ghost" size="icon" className="text-primary hover:text-accent hover:bg-secondary/50">
                   <Heart className="h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/cart">
-                <Button variant="ghost" size="icon" className="text-portflex-purple hover:text-portflex-lavender hover:bg-portflex-light">
+                <Button variant="ghost" size="icon" className="text-primary hover:text-accent hover:bg-secondary/50">
                   <ShoppingCart className="h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/account">
-                <Button variant="ghost" size="icon" className="text-portflex-purple hover:text-portflex-lavender hover:bg-portflex-light">
+                <Button variant="ghost" size="icon" className="text-primary hover:text-accent hover:bg-secondary/50">
                   <User className="h-5 w-5" />
                 </Button>
               </Link>
@@ -93,16 +95,16 @@ const Navbar = () => {
           {isMobile && (
             <div className="flex items-center space-x-2">
               <Link to="/search">
-                <Button variant="ghost" size="icon" className="text-portflex-purple">
+                <Button variant="ghost" size="icon" className="text-primary">
                   <Search className="h-5 w-5" />
                 </Button>
               </Link>
               <Link to="/cart">
-                <Button variant="ghost" size="icon" className="text-portflex-purple">
+                <Button variant="ghost" size="icon" className="text-primary">
                   <ShoppingCart className="h-5 w-5" />
                 </Button>
               </Link>
-              <Button variant="ghost" onClick={toggleMenu} size="icon" className="text-portflex-purple">
+              <Button variant="ghost" onClick={toggleMenu} size="icon" className="text-primary">
                 {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
             </div>
@@ -119,11 +121,11 @@ const Navbar = () => {
               <Input
                 type="search"
                 placeholder="Search for upcycled products..."
-                className="w-full pl-10 pr-4 py-2 rounded-full border-portflex-lavender focus:border-portflex-purple focus:ring-portflex-purple"
+                className="w-full pl-10 pr-4 py-2 rounded-full border-muted focus:border-primary focus:ring-primary"
                 value={searchQuery}
                 onChange={handleSearchChange}
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-portflex-purple h-5 w-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-primary h-5 w-5" />
             </div>
           </form>
         )}
@@ -135,9 +137,20 @@ const Navbar = () => {
               <Link
                 key={category.name}
                 to={category.path}
-                className="whitespace-nowrap text-sm text-portflex-purple hover:text-portflex-lavender"
+                className={`whitespace-nowrap text-sm font-medium ${
+                  category.name === "Sell" 
+                    ? "text-destructive hover:text-destructive/80" 
+                    : "text-primary hover:text-accent"
+                }`}
               >
-                {category.name}
+                {category.name === "Sell" ? (
+                  <span className="flex items-center">
+                    <Package className="h-4 w-4 mr-1" />
+                    {category.name}
+                  </span>
+                ) : (
+                  category.name
+                )}
               </Link>
             ))}
           </nav>
@@ -145,22 +158,33 @@ const Navbar = () => {
 
         {/* Mobile Menu - Only visible when menu is open on mobile */}
         {isMobile && isMenuOpen && (
-          <div className="fixed inset-0 z-50 bg-white pt-16">
+          <div className="fixed inset-0 z-50 bg-background pt-16">
             <div className="container mx-auto p-4">
               <div className="flex flex-col space-y-4">
                 {categories.map((category) => (
                   <Link
                     key={category.name}
                     to={category.path}
-                    className="text-lg font-medium text-portflex-purple hover:text-portflex-lavender py-2 border-b border-portflex-light"
+                    className={`text-lg font-medium py-2 border-b border-secondary ${
+                      category.name === "Sell" 
+                        ? "text-destructive hover:text-destructive/80 flex items-center" 
+                        : "text-primary hover:text-accent"
+                    }`}
                     onClick={toggleMenu}
                   >
-                    {category.name}
+                    {category.name === "Sell" ? (
+                      <>
+                        <Package className="h-5 w-5 mr-2" />
+                        {category.name}
+                      </>
+                    ) : (
+                      category.name
+                    )}
                   </Link>
                 ))}
                 <Link
                   to="/favorites"
-                  className="text-lg font-medium text-portflex-purple hover:text-portflex-lavender py-2 border-b border-portflex-light flex items-center"
+                  className="text-lg font-medium text-primary hover:text-accent py-2 border-b border-secondary flex items-center"
                   onClick={toggleMenu}
                 >
                   <Heart className="h-5 w-5 mr-2" />
@@ -168,7 +192,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/account"
-                  className="text-lg font-medium text-portflex-purple hover:text-portflex-lavender py-2 border-b border-portflex-light flex items-center"
+                  className="text-lg font-medium text-primary hover:text-accent py-2 border-b border-secondary flex items-center"
                   onClick={toggleMenu}
                 >
                   <User className="h-5 w-5 mr-2" />

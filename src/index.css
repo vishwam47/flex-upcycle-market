@@ -54,12 +54,7 @@
   }
 }
 
-.portflex-gradient {
-  background: linear-gradient(to right, #EBE5E8, #2C252D);
-}
-
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 15px -3px rgba(44, 37, 45, 0.1), 0 4px 6px -2px rgba(44, 37, 45, 0.05);
 }
-

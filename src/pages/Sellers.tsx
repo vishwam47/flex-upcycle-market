@@ -22,7 +22,7 @@ const Sellers = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <section className="bg-primary/5 py-12">
+        <section className="bg-primary/10 py-12">
           <div className="container mx-auto px-4">
             <h1 className="font-serif text-4xl font-bold text-primary text-center mb-6">
               Sell Your Upcycled Creations
@@ -38,7 +38,7 @@ const Sellers = () => {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="space-y-4">
                 <Label htmlFor="productName">Product Name</Label>
-                <Input id="productName" placeholder="Enter product name" required />
+                <Input id="productName" placeholder="Enter product name" required className="border-input focus:border-primary" />
               </div>
 
               <div className="space-y-4">
@@ -46,7 +46,7 @@ const Sellers = () => {
                 <Textarea 
                   id="description" 
                   placeholder="Describe your product and its upcycled journey..."
-                  className="min-h-[120px]"
+                  className="min-h-[120px] border-input focus:border-primary"
                   required
                 />
               </div>
@@ -60,6 +60,7 @@ const Sellers = () => {
                     min="0" 
                     step="0.01" 
                     placeholder="0.00"
+                    className="border-input focus:border-primary"
                     required
                   />
                 </div>
@@ -67,7 +68,7 @@ const Sellers = () => {
                   <Label htmlFor="category">Category</Label>
                   <select 
                     id="category"
-                    className="w-full border rounded-md h-10 px-3"
+                    className="w-full border rounded-md h-10 px-3 border-input focus:border-primary"
                     required
                   >
                     <option value="">Select category</option>
@@ -82,15 +83,30 @@ const Sellers = () => {
 
               <div className="space-y-4">
                 <Label htmlFor="images">Product Images</Label>
-                <div className="border-2 border-dashed border-primary/20 rounded-lg p-8 text-center">
-                  <Upload className="mx-auto h-12 w-12 text-primary/40 mb-4" />
+                <div className="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center">
+                  <Upload className="mx-auto h-12 w-12 text-primary/50 mb-4" />
                   <p className="text-sm text-muted-foreground">
                     Drag and drop your images here, or click to select files
                   </p>
+                  <input 
+                    type="file" 
+                    id="images" 
+                    multiple 
+                    accept="image/*" 
+                    className="hidden" 
+                  />
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    className="mt-4 border-primary text-primary hover:bg-primary/10"
+                    onClick={() => document.getElementById('images')?.click()}
+                  >
+                    Select Files
+                  </Button>
                 </div>
               </div>
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full bg-primary hover:bg-accent text-primary-foreground">
                 List Product
               </Button>
             </form>
