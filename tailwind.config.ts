@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -53,10 +52,15 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        portflex: {
-          light: '#FAFAFA',
-          accent: '#EBE5E8',
-          dark: '#2C252D'
+        custom: {
+          earthGreen: '#6C9A8B',
+          clayBeige: '#E8DAB2',
+          rustOrange: '#D88C60',
+          mossOlive: '#A4B494',
+          tealBlue: '#3C6E71',
+          sunflowerYellow: '#F4C95D',
+          charcoal: '#2E2E2E',
+          offWhite: '#FDFBF6'
         }
       },
       fontFamily: {
