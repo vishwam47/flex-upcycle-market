@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,24 +9,48 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/ui/icons";
+import { toast } from "@/components/ui/use-toast";
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const { signUp, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
 
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await signUp(email, password);
-    setLoading(false);
+    try {
+      await signUp(email, password);
+      toast({
+        title: "Check your email",
+        description: "We sent you a confirmation link.",
+      });
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleSignup = async () => {
     setLoading(true);
-    await signInWithGoogle();
-    setLoading(false);
+    try {
+      await signInWithGoogle();
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,7 +72,11 @@ const Signup = () => {
                 disabled={loading}
                 className="w-full"
               >
-                <Icons.google className="mr-2 h-4 w-4" />
+                {loading ? (
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Icons.google className="mr-2 h-4 w-4" />
+                )}
                 Sign up with Google
               </Button>
               
@@ -92,7 +120,14 @@ const Signup = () => {
                   className="w-full bg-primary hover:bg-accent text-primary-foreground"
                   disabled={loading}
                 >
-                  {loading ? 'Creating account...' : 'Create Account'}
+                  {loading ? (
+                    <>
+                      <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                      Creating account...
+                    </>
+                  ) : (
+                    'Create Account'
+                  )}
                 </Button>
               </form>
             </CardContent>
