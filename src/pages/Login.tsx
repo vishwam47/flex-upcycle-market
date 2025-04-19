@@ -1,16 +1,34 @@
 
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Info } from "lucide-react";
+import { Icons } from "@/components/ui/icons";
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { signInWithEmail, signInWithGoogle } = useAuth();
+
+  const handleEmailLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    await signInWithEmail(email, password);
+    setLoading(false);
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    await signInWithGoogle();
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -20,42 +38,70 @@ const Login = () => {
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-serif text-primary">Sign in</CardTitle>
               <CardDescription>
-                Enter your email and password to access your account
+                Choose your preferred sign in method
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
-              <div className="bg-accent/10 text-accent rounded-lg p-3 flex items-start">
-                <Info className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
-                <div className="text-sm">
-                  <p>This is a demo application without a connected backend.</p>
-                  <p className="mt-1">To implement authentication, please connect Supabase to your Lovable project.</p>
+              <Button 
+                variant="outline" 
+                onClick={handleGoogleLogin}
+                disabled={loading}
+                className="w-full"
+              >
+                <Icons.google className="mr-2 h-4 w-4" />
+                Continue with Google
+              </Button>
+              
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
                 </div>
               </div>
-              
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="name@example.com" />
-              </div>
-              
-              <div className="grid gap-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
-                  <Link to="/forgot-password" className="text-sm text-accent hover:underline">
-                    Forgot password?
-                  </Link>
+
+              <form onSubmit={handleEmailLogin} className="space-y-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
-                <Input id="password" type="password" />
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <Checkbox id="remember" />
-                <Label htmlFor="remember" className="text-sm">Remember me</Label>
-              </div>
+
+                <div className="grid gap-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="password">Password</Label>
+                    <Link to="/forgot-password" className="text-sm text-accent hover:underline">
+                      Forgot password?
+                    </Link>
+                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary hover:bg-accent text-primary-foreground"
+                  disabled={loading}
+                >
+                  {loading ? 'Signing in...' : 'Sign In'}
+                </Button>
+              </form>
             </CardContent>
             <CardFooter className="flex flex-col">
-              <Button className="w-full bg-primary hover:bg-accent text-primary-foreground mb-4">
-                Sign In
-              </Button>
               <div className="text-center text-sm">
                 Don't have an account?{" "}
                 <Link to="/signup" className="text-accent hover:underline">

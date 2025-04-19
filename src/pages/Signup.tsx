@@ -1,16 +1,34 @@
 
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Info } from "lucide-react";
+import { Icons } from "@/components/ui/icons";
 
 const Signup = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { signUp, signInWithGoogle } = useAuth();
+
+  const handleEmailSignup = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    await signUp(email, password);
+    setLoading(false);
+  };
+
+  const handleGoogleSignup = async () => {
+    setLoading(true);
+    await signInWithGoogle();
+    setLoading(false);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -20,62 +38,65 @@ const Signup = () => {
             <CardHeader className="space-y-1">
               <CardTitle className="text-2xl font-serif text-primary">Create an account</CardTitle>
               <CardDescription>
-                Enter your details to create your account
+                Choose your preferred sign up method
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
-              <div className="bg-accent/10 text-accent rounded-lg p-3 flex items-start">
-                <Info className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
-                <div className="text-sm">
-                  <p>This is a demo application without a connected backend.</p>
-                  <p className="mt-1">To implement authentication, please connect Supabase to your Lovable project.</p>
+              <Button 
+                variant="outline" 
+                onClick={handleGoogleSignup}
+                disabled={loading}
+                className="w-full"
+              >
+                <Icons.google className="mr-2 h-4 w-4" />
+                Sign up with Google
+              </Button>
+              
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">
+                    Or continue with
+                  </span>
                 </div>
               </div>
-              
-              <div className="grid grid-cols-2 gap-4">
+
+              <form onSubmit={handleEmailSignup} className="space-y-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="firstName">First name</Label>
-                  <Input id="firstName" />
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
+
                 <div className="grid gap-2">
-                  <Label htmlFor="lastName">Last name</Label>
-                  <Input id="lastName" />
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
                 </div>
-              </div>
-              
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="name@example.com" />
-              </div>
-              
-              <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" />
-              </div>
-              
-              <div className="grid gap-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
-                <Input id="confirmPassword" type="password" />
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <Label htmlFor="terms" className="text-sm">
-                  I agree to the{" "}
-                  <Link to="/terms" className="text-accent hover:underline">
-                    Terms of Service
-                  </Link>
-                  {" "}and{" "}
-                  <Link to="/privacy" className="text-accent hover:underline">
-                    Privacy Policy
-                  </Link>
-                </Label>
-              </div>
+
+                <Button 
+                  type="submit" 
+                  className="w-full bg-primary hover:bg-accent text-primary-foreground"
+                  disabled={loading}
+                >
+                  {loading ? 'Creating account...' : 'Create Account'}
+                </Button>
+              </form>
             </CardContent>
             <CardFooter className="flex flex-col">
-              <Button className="w-full bg-primary hover:bg-accent text-primary-foreground mb-4">
-                Create Account
-              </Button>
               <div className="text-center text-sm">
                 Already have an account?{" "}
                 <Link to="/login" className="text-accent hover:underline">
