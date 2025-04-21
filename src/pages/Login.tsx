@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Icons } from "@/components/ui/icons";
-import { toast } from "@/components/ui/use-toast"; // Changed from react-toastify to local toast
+import { toast } from "@/components/ui/use-toast"; // Use shadcn toast
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -57,7 +57,7 @@ const Login = () => {
         <div className="container mx-auto px-4 flex justify-center">
           <Card className="w-full max-w-md border-secondary/50">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-2xl font-serif text-primary">Sign in</CardTitle>
+              <CardTitle className="text-2xl font-serif text-accent">Sign in</CardTitle>
               <CardDescription>
                 Choose your preferred sign in method
               </CardDescription>
@@ -67,7 +67,7 @@ const Login = () => {
                 variant="outline" 
                 onClick={handleGoogleLogin}
                 disabled={loading}
-                className="w-full"
+                className="w-full border-accent text-accent hover:bg-highlight"
               >
                 {loading ? (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -104,7 +104,7 @@ const Login = () => {
                 <div className="grid gap-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="password">Password</Label>
-                    <Link to="/forgot-password" className="text-sm text-accent hover:underline">
+                    <Link to="/forgot-password" className="text-sm text-highlight hover:underline">
                       Forgot password?
                     </Link>
                   </div>
@@ -119,7 +119,7 @@ const Login = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-primary hover:bg-accent text-primary-foreground"
+                  className="w-full button-shop-now"
                   disabled={loading}
                 >
                   {loading ? (
@@ -133,11 +133,16 @@ const Login = () => {
                 </Button>
               </form>
             </CardContent>
-            <CardFooter className="flex flex-col">
+            <CardFooter className="flex flex-col gap-2">
               <div className="text-center text-sm">
                 Don't have an account?{" "}
-                <Link to="/signup" className="text-accent hover:underline">
+                <Link to="/signup" className="text-highlight hover:underline">
                   Sign up
+                </Link>
+              </div>
+              <div className="text-center text-xs">
+                <Link to="/artisan-signin" className="text-accent font-semibold hover:underline">
+                  Artisan? Sign in here
                 </Link>
               </div>
             </CardFooter>

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,33 +7,41 @@
 
 @layer base {
   :root {
-    --background: 60 30% 98%;  /* #FDFBF6 */
-    --foreground: 0 0% 18%;  /* #2E2E2E */
-
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 18%;
-
-    --popover: 0 0% 100%;
+    /* Backgrounds */
+    --background: 44 51% 87%;     /* Clay Beige - #E8DAB2 */
+    --foreground: 0 0% 18%;       /* Charcoal Black - #2E2E2E */
+    --card: 44 51% 87%;           /* Clay Beige */
+    --card-foreground: 0 0% 18%;  /* Charcoal */
+    --popover: 44 51% 87%;
     --popover-foreground: 0 0% 18%;
 
-    --primary: 162 18% 51%;  /* #6C9A8B */
-    --primary-foreground: 60 30% 98%;
+    /* Primary/Earth Green */
+    --primary: 157 15% 50%;        /* Earth Green - #6C9A8B */
+    --primary-foreground: 44 51% 87%;
 
-    --secondary: 47 63% 80%;  /* #E8DAB2 */
+    /* Secondary/Moss Olive */
+    --secondary: 78 13% 61%;            /* Moss Olive - #A4B494 */
     --secondary-foreground: 0 0% 18%;
 
-    --accent: 184 30% 34%;  /* #3C6E71 */
-    --accent-foreground: 60 30% 98%;
+    /* Destructive/Rust Orange */
+    --destructive: 23 64% 61%;        /* Rust Orange - #D88C60 */
+    --destructive-foreground: 44 51% 87%;
 
-    --muted: 47 63% 80%;
+    /* Muted/Olive */
+    --muted: 78 13% 61%; /* Moss Olive */
     --muted-foreground: 0 0% 18%;
 
-    --destructive: 19 55% 61%;  /* #D88C60 */
-    --destructive-foreground: 60 30% 98%;
+    /* Accent/Teal Blue (for CTAs) */
+    --accent: 190 30% 34%;     /* Teal Blue - #3C6E71 */
+    --accent-foreground: 44 51% 87%;
 
-    --border: 84 11% 64%;  /* #A4B494 */
-    --input: 84 11% 64%;
-    --ring: 162 18% 51%;
+    /* Highlight/Sunflower Yellow */
+    --highlight: 44 91% 63%;   /* Sunflower Yellow - #F4C95D */
+
+    /* Border/Input/Ring */
+    --border: 78 13% 61%;      /* Moss Olive */
+    --input: 78 13% 61%;
+    --ring: 157 15% 50%;
 
     --radius: 0.75rem;
   }
@@ -53,6 +62,22 @@
   }
 }
 
+/* Button Hover/Focus Styles (CTAs) */
+.button-shop-now {
+  background-color: #3C6E71 !important;     /* Teal Blue / Accent */
+  color: #FDFBF6 !important;                /* Off White */
+  border-radius: 9999px !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px -3px #6C9A8B55;
+  transition: background 0.2s, color 0.2s;
+}
+.button-shop-now:hover, .button-shop-now:focus {
+  background-color: #F4C95D !important;     /* Sunflower Yellow */
+  color: #2E2E2E !important;
+}
+
+/* Product Card Shadow */
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 15px -3px rgba(44, 37, 45, 0.1), 0 4px 6px -2px rgba(44, 37, 45, 0.05);
