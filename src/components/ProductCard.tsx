@@ -5,11 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Product } from "@/types/product";
 
+const DOLLAR_TO_RUPEE = 83;
+
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const rupees = Math.round(product.price * DOLLAR_TO_RUPEE);
+
   return (
     <Card className="product-card overflow-hidden transition-all duration-300 h-full flex flex-col border-secondary/50">
       <div className="relative">
@@ -39,7 +43,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </Link>
         <div className="flex justify-between items-center mt-2">
           <p className="text-lg font-bold text-primary">
-            ${product.price.toFixed(2)}
+            ₹{rupees.toLocaleString("en-IN")}
           </p>
           <div className="text-sm text-muted-foreground">
             {product.seller}

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -42,7 +41,7 @@ const Cart = () => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
-  // Calculate totals
+  // Calculate totals in rupees
   const subtotal = cartProducts.reduce(
     (sum, item) => sum + (item?.price || 0) * (item?.quantity || 0),
     0
@@ -122,10 +121,9 @@ const Cart = () => {
                             </button>
                           </div>
                           <div className="font-semibold text-accent flex items-center gap-1">
-                            <BadgeIndianRupee className="w-5 h-5" />
-                            {Math.round((item?.price || 0) * DOLLAR_TO_RUPEE).toLocaleString('en-IN')}
+                            ₹{Math.round((item?.price || 0) * DOLLAR_TO_RUPEE).toLocaleString("en-IN")}
                             <span className="ml-2 text-gray-500 text-sm">
-                              (${((item?.price || 0) * (item?.quantity || 0)).toFixed(2)})
+                              {/* Hide dollar price */}
                             </span>
                           </div>
                         </div>
@@ -145,41 +143,25 @@ const Cart = () => {
                     <div className="flex justify-between">
                       <span className="text-secondary-foreground">Subtotal</span>
                       <span className="font-medium flex items-center gap-1">
-                        <BadgeIndianRupee className="w-5 h-5" />
-                        {subtotalINR.toLocaleString('en-IN')}
-                        <span className="ml-2 text-gray-500 text-xs">
-                          (${subtotal.toFixed(2)})
-                        </span>
+                        ₹{subtotalINR.toLocaleString("en-IN")}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-secondary-foreground">Shipping</span>
                       <span className="font-medium flex items-center gap-1">
-                        <BadgeIndianRupee className="w-5 h-5" />
-                        {shippingINR.toLocaleString('en-IN')}
-                        <span className="ml-2 text-gray-500 text-xs">
-                          (${shipping.toFixed(2)})
-                        </span>
+                        ₹{shippingINR.toLocaleString("en-IN")}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-secondary-foreground">Tax</span>
                       <span className="font-medium flex items-center gap-1">
-                        <BadgeIndianRupee className="w-5 h-5" />
-                        {taxINR.toLocaleString('en-IN')}
-                        <span className="ml-2 text-gray-500 text-xs">
-                          (${tax.toFixed(2)})
-                        </span>
+                        ₹{taxINR.toLocaleString("en-IN")}
                       </span>
                     </div>
                     <div className="border-t border-secondary pt-3 flex justify-between">
                       <span className="font-semibold text-accent">Total</span>
                       <span className="font-bold text-accent flex items-center gap-1">
-                        <BadgeIndianRupee className="w-5 h-5" />
-                        {totalINR.toLocaleString('en-IN')}
-                        <span className="ml-2 text-gray-500 text-xs">
-                          (${total.toFixed(2)})
-                        </span>
+                        ₹{totalINR.toLocaleString("en-IN")}
                       </span>
                     </div>
                   </div>
