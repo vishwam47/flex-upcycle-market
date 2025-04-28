@@ -2,6 +2,9 @@
 import React from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import vishwamimage from "./../../public/WhatsApp Image 2025-04-19 at 19.41.14_2cea5951.jpg"
+import bannoimage from "./../../public/WhatsApp Image 2025-04-21 at 09.15.59_a44d9261.jpg"
+
 import { BookOpen, Users, Star } from "lucide-react";
 
 const About = () => {
@@ -39,25 +42,19 @@ const About = () => {
         <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">
             <h2 className="font-serif text-3xl font-bold text-primary text-center mb-12">Meet Our Founders</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {[
                 {
-                  name: "Sarah Chen",
-                  role: "CEO & Co-Founder",
-                  image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+                  name: "Vishwam Shandilya",
+                  role: "Co-Founder",
+                  image: vishwamimage,
                   bio: "Passionate about sustainable design and circular economy."
                 },
                 {
-                  name: "David Park",
-                  role: "COO & Co-Founder",
-                  image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+                  name: "Shubhayan Banerjee",
+                  role: "Co-Founder",
+                  image: bannoimage,
                   bio: "Expert in sustainable supply chains and marketplace operations."
-                },
-                {
-                  name: "Elena Martinez",
-                  role: "Creative Director",
-                  image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-                  bio: "Award-winning designer focusing on upcycled materials."
                 }
               ].map((founder) => (
                 <div key={founder.name} className="text-center">
